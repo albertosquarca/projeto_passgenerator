@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  passgenapp
+  labels:
+    app:  passgenapp
+spec:
+  selector:
+    matchLabels:
+      app: passgenapp
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app:  passgenapp
+    spec:
+      # initContainers:
+        # Init containers are exactly like regular containers, except:
+          # - Init containers always run to completion.
+          # - Each init container must complete successfully before the next one starts.
+      containers:
+      - name:  passgenapp
+        image:  squarca/password-generator-app:2.0
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 8080
+          name:  passgenapp
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: passgenapp
+spec:
+  selector:
+    app: passgenapp
+  type: ClusterIP
+  ports:
+  - name: passgenapp
+    protocol: TCP
+    port: 8080
+    targetPort: 8080

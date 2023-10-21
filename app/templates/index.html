@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		body {
+			background-color: black;
+			color: white;
+		}
+
+		.banner {
+			background-image: url("{{.BannerURL}}");
+			background-size: cover;
+			height: 200px;
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner"></div>
+	<h1>Password Generator</h1>
+	<p>Selecione quantos caracteres você deseja que a sua senha contenha:</p>
+	<form method="POST" action="/generate">
+		<label for="characters">8</label>
+		<input type="checkbox" name="characters" value="8">
+		<label for="characters">12</label>
+		<input type="checkbox" name="characters" value="12">
+		<label for="characters">16</label>
+		<input type="checkbox" name="characters" value="16">
+		<label for="characters">24</label>
+		<input type="checkbox" name="characters" value="24">
+		<button type="submit">Gerar Senhas</button>
+	</form>
+	{{ range .Passwords }}
+		<p>{{ . }}</p>
+	{{ end }}
+</body>
+</html>
