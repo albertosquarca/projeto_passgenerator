@@ -1,2 +1,2 @@
 # projeto_passgenerator
-Projeto de um aplicativo em GO para geração de senhas. Este projeto utiliza uma imagem criada por Alberto e disponibilizada no dockerhub. Este projeto é constituído da imagem, dos arquivos para deploy no kubernetes e um terraform, para subir o ambiente de forma provisionada através de IaC na AWS. 
+Projeto de um aplicativo em GO para geração de senhas. Este projeto utiliza uma imagem criada por Alberto e disponibilizada no dockerhub. Este projeto é constituído da imagem, dos arquivos para deploy no kubernetes e um terraform, para subir o ambiente de forma provisionada através de IaC na AWS. Nele também há pipelines de automação para criação e deploy da imagem, além da pipeline de deploy automatizado, CI/CD
